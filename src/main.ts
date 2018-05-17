@@ -6,10 +6,7 @@ let mainWindow: Electron.BrowserWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
-  });
+  mainWindow = new BrowserWindow();
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -18,8 +15,7 @@ function createWindow() {
       slashes: true,
   }));
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.maximize();
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
