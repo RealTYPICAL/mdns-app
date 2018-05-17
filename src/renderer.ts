@@ -7,16 +7,43 @@ import _ = require("underscore");
 const votingService = new VotingService<string>();
 
 function refreshEntries() {
-    const list = document.getElementById("currentVote") as HTMLUListElement;
+    const list = document.getElementById("currentVote");
     while (list.firstChild) {
         list.removeChild(list.firstChild);
     }
+
     votingService.getCurrentVote(entries => {
         entries.forEach(entry => {
-            const li = document.createElement("li");
-            const textNode = document.createTextNode(`Entry:${entry.url} Vote:${entry.score}`);
-            li.appendChild(textNode);
-            list.appendChild(li);
+            const name = document.createElement("div");
+            name.classList.add("grid-item");
+            name.innerHTML = `${entry.url}`;
+            list.appendChild(name);
+
+            const score = document.createElement("div");
+            score.classList.add("grid-item");
+            score.innerHTML = `${entry.score}`;
+            list.appendChild(score);
+            
+            const gridContainer = document.createElement("div");
+            gridContainer.classList.add("grid-voting");
+            gridContainer.classList.add("grid-item");
+            list.appendChild(gridContainer);
+            
+            const upvote = document.createElement("div");
+            upvote.classList.add("upvote");
+            gridContainer.appendChild(upvote);
+            upvote.addEventListener('click', event => {
+                const target = event.target as HTMLSpanElement;
+                target.classList.toggle('on');
+            });
+            
+            const downvote = document.createElement("div");
+            downvote.classList.add("downvote");
+            gridContainer.appendChild(downvote);
+            downvote.addEventListener('click', event => {
+                const target = event.target as HTMLSpanElement;
+                target.classList.toggle('on');
+            });
         });
     });
 }
@@ -29,17 +56,3 @@ button.onclick = event => {
     votingService.submitEntry(entry.value, refreshEntries);
     entry.value = "";
 };
-
-for (const btn of document.querySelectorAll('.upvote')) {
-    btn.addEventListener('click', event => {
-        const target = event.target as HTMLSpanElement;
-        target.classList.toggle('on');
-    });
-}
-
-for (const btn of document.querySelectorAll('.downvote')) {
-    btn.addEventListener('click', event => {
-        const target = event.target as HTMLSpanElement;
-        target.classList.toggle('on');
-    });
-}
