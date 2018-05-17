@@ -2,15 +2,33 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 import { VotingService } from "./service";
+import _ = require("underscore");
 
 const votingService = new VotingService<string>();
 
-votingService.getCurrentVote(entries => {
-    const list = document.getElementById("currentVote");
-    entries.forEach(entry => {
-        const li = document.createElement("li");
-        const textNode = document.createTextNode(entry.url);
-        li.appendChild(textNode);
-        list.appendChild(li);
+
+function refreshEntries() {
+    const list = document.getElementById("currentVote") as HTMLUListElement;
+    //Remove all children from a list.
+    while(list.firstChild){
+        list.removeChild(list.firstChild);
+    }
+
+    votingService.getCurrentVote(entries => {
+        entries.forEach(entry => {
+            const li = document.createElement("li");
+            const textNode = document.createTextNode(`Entry:${entry.url} Vote:${entry.score}`);
+            li.appendChild(textNode);
+            list.appendChild(li);
+        });
     });
-});
+}
+
+refreshEntries();
+
+const button = document.getElementById("submit");
+button.onclick = event => {
+    const entry = _.first(document.getElementsByName("entry")) as HTMLInputElement;
+    votingService.submitEntry(entry.value, refreshEntries);
+    entry.value = "";
+};

@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Current Vote</title>
-  </head>
-  <body>
-    <h1>Current Vote</h1>
-    <ul id=currentVote></ul>
-  </body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./dist/renderer.js');
-  </script>
+<head>
+  <meta charset="UTF-8">
+  <title>Current Vote</title>
+</head>
+
+<body>
+  <h1>Current Vote</h1>
+  <ul id=currentVote></ul>
+
+  Entry:<input type="text" name="entry"/>
+  <button id="submit" type="button">Submit!</button>
+</body>
+
+<script>
+  // You can also require other files to run in this process
+  require('./dist/renderer.js');
+</script>
+
 </html>
