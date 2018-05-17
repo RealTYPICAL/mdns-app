@@ -2,30 +2,29 @@
   "name": "electron-quick-start-typescript",
   "version": "1.0.0",
   "description": "A minimal Electron application written with Typescript",
+  "main": "./dist/main.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "electron ./dist/main.js"
+    "start": "electron ."
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo",
-    "typescript"
-  ],
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@types/bonjour": "^3.5.5",
+    "@types/es6-promise": "^3.3.0",
+    "@types/ip": "^0.0.31",
+    "@types/underscore": "^1.8.8",
+    "@types/request": "^2.47.0",
     "electron": "^1.8.4",
     "tslint": "^5.9.1",
     "typescript": "^2.6.2"
   },
   "dependencies": {
-    "@types/bonjour": "^3.5.5",
-    "bonjour": "^3.5.0"
+    "bonjour": "^3.5.0",
+    "request": "^2.85.0",
+    "underscore": "^1.9.0"
   }
 }

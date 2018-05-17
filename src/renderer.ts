@@ -1,14 +1,16 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-import * as bonjourModule from "bonjour";
+import { VotingService } from "./service";
 
-const bonjour = bonjourModule();
+const votingService = new VotingService<string>();
 
-bonjour.find({ type: "music-voting" }, (service: bonjourModule.Service) => {
-    console.log("Found an HTTP server: ", service);
-    // const address = _.find(service.addresses, e => ip.isV4Format(e));
-    // if (address) {
-    //     doAction(address, service.port);
-    // }
+votingService.getCurrentVote(entries => {
+    const list = document.getElementById("currentVote");
+    entries.forEach(entry => {
+        const li = document.createElement("li");
+        const textNode = document.createTextNode(entry.url);
+        li.appendChild(textNode);
+        list.appendChild(li);
+    });
 });
