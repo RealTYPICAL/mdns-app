@@ -1,4 +1,4 @@
-.vote {
+.upvote {
     display: inline-block;
     overflow: hidden;
     width: 40px;
@@ -9,6 +9,22 @@
   } 
   
   
-  .vote.on {
+  .upvote.on {
+    background-position: 0 2px;
+  }
+
+.downvote {
+    display: inline-block;
+    overflow: hidden;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+    background: url('upvote.png');
+    background-position: 0 -25px;
+    transform: rotate(180deg);
+  } 
+  
+  
+  .downvote.on {
     background-position: 0 2px;
   }

@@ -30,7 +30,14 @@ button.onclick = event => {
     entry.value = "";
 };
 
-for (const btn of document.querySelectorAll('.vote')) {
+for (const btn of document.querySelectorAll('.upvote')) {
+    btn.addEventListener('click', event => {
+        const target = event.target as HTMLSpanElement;
+        target.classList.toggle('on');
+    });
+}
+
+for (const btn of document.querySelectorAll('.downvote')) {
     btn.addEventListener('click', event => {
         const target = event.target as HTMLSpanElement;
         target.classList.toggle('on');
