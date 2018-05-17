@@ -6,14 +6,11 @@ import _ = require("underscore");
 
 const votingService = new VotingService<string>();
 
-
 function refreshEntries() {
     const list = document.getElementById("currentVote") as HTMLUListElement;
-    //Remove all children from a list.
-    while(list.firstChild){
+    while (list.firstChild) {
         list.removeChild(list.firstChild);
     }
-
     votingService.getCurrentVote(entries => {
         entries.forEach(entry => {
             const li = document.createElement("li");
@@ -32,3 +29,10 @@ button.onclick = event => {
     votingService.submitEntry(entry.value, refreshEntries);
     entry.value = "";
 };
+
+for (const btn of document.querySelectorAll('.vote')) {
+    btn.addEventListener('click', event => {
+        const target = event.target as HTMLSpanElement;
+        target.classList.toggle('on');
+    });
+}
