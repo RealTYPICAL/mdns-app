@@ -17,7 +17,7 @@ function refreshEntries() {
     }
 
     votingService.getCurrentVote(entries => {
-        new Grid(list, entries);
+        new Grid(list, entries, votingService);
     });
 }
 

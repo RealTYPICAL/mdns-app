@@ -44,7 +44,7 @@ export class VotingService<T> {
             });
         });
     }
-    submitVote(vote: Vote, callback: () => void): void {
+    submitVote(vote: Vote, callback?: () => void): void {
         this.votingURL.then(url => {
             request.post(`${url}/submitVote`, { json: vote }, () => {
                 callback();
