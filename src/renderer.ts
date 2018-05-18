@@ -3,6 +3,8 @@
 // All of the Node.js APIs are available in this process.
 import { VotingService } from "./service";
 import _ = require("underscore");
+import { Griditem } from "./griditem";
+import { GridVoting } from "./gridVoting";
 
 const votingService = new VotingService<string>();
 
@@ -14,36 +16,12 @@ function refreshEntries() {
 
     votingService.getCurrentVote(entries => {
         entries.forEach(entry => {
-            const name = document.createElement("div");
-            name.classList.add("grid-item");
-            name.innerHTML = `${entry.url}`;
-            list.appendChild(name);
+            new Griditem(list, entry.url);
 
-            const score = document.createElement("div");
-            score.classList.add("grid-item");
-            score.innerHTML = `${entry.score}`;
-            list.appendChild(score);
-            
-            const gridContainer = document.createElement("div");
-            gridContainer.classList.add("grid-voting");
-            gridContainer.classList.add("grid-item");
-            list.appendChild(gridContainer);
-            
-            const upvote = document.createElement("div");
-            upvote.classList.add("upvote");
-            gridContainer.appendChild(upvote);
-            upvote.addEventListener('click', event => {
-                const target = event.target as HTMLDivElement;
-                target.classList.toggle('on');
-            });
-            
-            const downvote = document.createElement("div");
-            downvote.classList.add("downvote");
-            gridContainer.appendChild(downvote);
-            downvote.addEventListener('click', event => {
-                const target = event.target as HTMLDivElement;
-                target.classList.toggle('on');
-            });
+            new Griditem(list, String(entry.score));
+
+            new GridVoting(list);
+
         });
     });
 }
