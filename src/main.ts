@@ -6,16 +6,17 @@ let mainWindow: Electron.BrowserWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow();
+  mainWindow = new BrowserWindow({ show: false });
 
+  mainWindow.maximize();
+  mainWindow.show();
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, "../index.html"),
       protocol: "file:",
-      slashes: true,
+      slashes: true
   }));
 
-  mainWindow.maximize();
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {

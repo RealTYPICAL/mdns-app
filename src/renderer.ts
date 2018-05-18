@@ -5,6 +5,7 @@ import { VotingService } from "./service";
 import _ = require("underscore");
 import { Griditem } from "./griditem";
 import { GridVoting } from "./gridVoting";
+import { GridRow } from "./gridRow";
 
 const votingService = new VotingService<string>();
 
@@ -16,12 +17,7 @@ function refreshEntries() {
 
     votingService.getCurrentVote(entries => {
         entries.forEach(entry => {
-            new Griditem(list, entry.url);
-
-            new Griditem(list, String(entry.score));
-
-            new GridVoting(list);
-
+            new GridRow(list, entry);
         });
     });
 }
