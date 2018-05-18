@@ -1,14 +1,29 @@
 
 
-export class Downvote{
+export enum ArrowType {
+    upvote = 'upvote',
+    downvote = 'downvote'
+}
 
-    constructor(container: HTMLElement){
-        const downvote = document.createElement("div");
-        downvote.classList.add("downvote");
-        container.appendChild(downvote);
-        downvote.addEventListener('click', event => {
+export class Arrow {
+
+    private readonly downvote: HTMLDivElement;
+
+    constructor(container: HTMLElement, arrow: string) {
+        this.downvote = document.createElement("div");
+        this.downvote.classList.add(arrow);
+        container.appendChild(this.downvote);
+        this.downvote.addEventListener('click', event => {
             const target = event.target as HTMLDivElement;
             target.classList.toggle('on');
         });
+    }
+
+    public addEventListener(listener: (event: MouseEvent) => void): void {
+        this.downvote.addEventListener('click', listener);
+    }
+
+    public off(): void {
+        this.downvote.classList.remove('on');
     }
 }

@@ -1,10 +1,9 @@
-import { Upvote } from "./upvote";
-import { Downvote } from "./downvote";
+import { Arrow, ArrowType } from "./downvote";
 
+export class GridVoting {
 
-export class GridVoting{
-    private upvote: Upvote;
-    private downvote: Downvote;
+    private upvote: Arrow;
+    private downvote: Arrow;
 
     constructor(container: HTMLElement) {
         const gridContainer = document.createElement("div");
@@ -12,8 +11,16 @@ export class GridVoting{
         gridContainer.classList.add("grid-item");
         container.appendChild(gridContainer);
 
-        this.upvote = new Upvote(gridContainer);
+        this.upvote = new Arrow(gridContainer, ArrowType.upvote);
         
-        this.downvote = new Downvote(gridContainer);
+        this.downvote = new Arrow(gridContainer, ArrowType.downvote);
+
+        this.upvote.addEventListener(event => {
+            this.downvote.off();
+        });
+
+        this.downvote.addEventListener(event => {
+            this.upvote.off();
+        });
     }
 }
