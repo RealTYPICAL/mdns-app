@@ -7,25 +7,17 @@ import { Griditem } from "./griditem";
 import { GridVoting } from "./gridVoting";
 import { GridRow } from "./gridRow";
 import { Grid } from "./grid";
+import { CurrentVote } from "./currentVote";
 
 const votingService = new VotingService<string>();
 
-function refreshEntries() {
-    const list = document.getElementById("currentVote");
-    while (list.firstChild) {
-        list.removeChild(list.firstChild);
-    }
+const currentVote = new CurrentVote(votingService);
 
-    votingService.getCurrentVote(entries => {
-        new Grid(list, entries, votingService);
-    });
-}
-
-refreshEntries();
+currentVote.refreshEntries();
 
 const button = document.getElementById("submit");
 button.onclick = event => {
     const entry = _.first(document.getElementsByName("entry")) as HTMLInputElement;
-    votingService.submitEntry(entry.value, refreshEntries);
+    votingService.submitEntry(entry.value, () => currentVote.refreshEntries());
     entry.value = "";
 };

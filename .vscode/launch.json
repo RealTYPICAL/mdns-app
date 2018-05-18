@@ -21,7 +21,8 @@
             "request": "attach",
             "port": 9223,
             "webRoot": "${workspaceFolder}",
-            "timeout": 30000
+            "timeout": 30000,
+            "sourceMaps": true
         }
     ],
     "compounds": [
