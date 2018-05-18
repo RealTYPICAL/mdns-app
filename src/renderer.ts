@@ -33,7 +33,7 @@ function refreshEntries() {
             upvote.classList.add("upvote");
             gridContainer.appendChild(upvote);
             upvote.addEventListener('click', event => {
-                const target = event.target as HTMLSpanElement;
+                const target = event.target as HTMLDivElement;
                 target.classList.toggle('on');
             });
             
@@ -41,7 +41,7 @@ function refreshEntries() {
             downvote.classList.add("downvote");
             gridContainer.appendChild(downvote);
             downvote.addEventListener('click', event => {
-                const target = event.target as HTMLSpanElement;
+                const target = event.target as HTMLDivElement;
                 target.classList.toggle('on');
             });
         });
