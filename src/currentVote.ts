@@ -12,14 +12,13 @@ export class CurrentVote {
     }
 
     public refreshEntries(): void {
-        console.log("next due: " + this.votingService);
         const currentVote = document.getElementById("currentVote");
         while (currentVote.firstChild) {
             currentVote.removeChild(currentVote.firstChild);
         }
 
         this.votingService.getCurrentVote(entries => {
-            new Grid(currentVote, entries, this.votingService);
+            new Grid(currentVote, entries, this.votingService, () => this.refreshEntries());
         });
     }
 }
