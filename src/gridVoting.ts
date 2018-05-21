@@ -1,25 +1,29 @@
 import { Arrow, ArrowType } from "./downvote";
-import { VotingService } from "./service";
+import { VotingService, IEntry } from "./service";
+import { address } from "ip";
+import _ = require("underscore");
 
 export class GridVoting {
-    
+
     private upvote: Arrow;
     private downvote: Arrow;
-    
-    constructor(container: HTMLElement) {
+
+    constructor(container: HTMLElement, currentVotes: IEntry<string>) {
         const gridContainer = document.createElement("div");
         gridContainer.classList.add("grid-voting");
         gridContainer.classList.add("grid-item");
         container.appendChild(gridContainer);
-        
-        this.upvote = new Arrow(gridContainer, ArrowType.upvote);
-        
-        this.downvote = new Arrow(gridContainer, ArrowType.downvote);
-        
+
+        const ip = address();
+
+        this.upvote = new Arrow(gridContainer, ArrowType.upvote, _.contains(currentVotes.upvotes, ip));
+
+        this.downvote = new Arrow(gridContainer, ArrowType.downvote, _.contains(currentVotes.downvotes, ip));
+
         this.upvote.addEventListener(event => {
             this.downvote.off();
         });
-        
+
         this.downvote.addEventListener(event => {
             this.upvote.off();
         });

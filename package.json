@@ -16,14 +16,15 @@
     "@types/bonjour": "^3.5.5",
     "@types/es6-promise": "^3.3.0",
     "@types/ip": "^0.0.31",
-    "@types/underscore": "^1.8.8",
     "@types/request": "^2.47.0",
+    "@types/underscore": "^1.8.8",
     "electron": "^1.8.4",
     "tslint": "^5.9.1",
     "typescript": "^2.6.2"
   },
   "dependencies": {
     "bonjour": "^3.5.0",
+    "ip": "^1.1.5",
     "request": "^2.85.0",
     "underscore": "^1.9.0"
   }

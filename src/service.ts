@@ -6,9 +6,10 @@ const bonjour = bonjourModule();
 
 export interface IEntry<T> {
     score: number;
-    currentVotes: string[];
     url: T;
     id: number;
+    upvotes: string[];
+    downvotes: string[];
 }
 
 export interface Vote {

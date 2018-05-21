@@ -8,7 +8,6 @@ export class CurrentVote {
 
     constructor(votingService: VotingService<string>) {
         this.votingService = votingService;
-        console.log("woeifjoiwejf: " + votingService);
     }
 
     public refreshEntries(): void {
