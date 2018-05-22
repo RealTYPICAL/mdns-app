@@ -1,7 +1,7 @@
-import { Arrow, ArrowType } from "./downvote";
 import { VotingService, IEntry } from "./service";
 import { address } from "ip";
 import _ = require("underscore");
+import { Arrow, ArrowType } from "./arrow";
 
 export class GridVoting {
 
@@ -14,8 +14,8 @@ export class GridVoting {
         gridContainer.classList.add("grid-item");
         container.appendChild(gridContainer);
 
-        const ip = address();
-
+        const ip = address("WLAN");
+        
         this.upvote = new Arrow(gridContainer, ArrowType.upvote, _.contains(currentVotes.upvotes, ip));
 
         this.downvote = new Arrow(gridContainer, ArrowType.downvote, _.contains(currentVotes.downvotes, ip));

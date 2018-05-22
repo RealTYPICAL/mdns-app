@@ -23,7 +23,7 @@ export class VotingService<T> {
 
     constructor() {
         this.votingURL = new Promise<string>(resolve => {
-            bonjour.find({ type: "music-voting" }, (service: bonjourModule.Service) => {
+            bonjour.find({ type: "voting" }, (service: bonjourModule.Service) => {
                 console.log("Found an HTTP server: ", service);
                 const address = _.find(service.addresses, e => ip.isV4Format(e));
                 resolve(`http://${address}:${service.port}`);
